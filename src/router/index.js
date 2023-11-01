@@ -5,6 +5,10 @@ import sourceData from '@/data.json'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   linkActiveClass: 'vue-school-active-link',
+  scrollBehavior(to, from, savedPosition) {
+    return savedPosition 
+    
+  },
   routes: [
     { path: '/', name: 'Home', component: HomeView },
     {
