@@ -5,16 +5,12 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   linkActiveClass: 'vue-school-active-link',
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
+    { path: '/', name: 'Home', component: HomeView },
     {
       path: '/destination/:id/:slug',
       name: 'destination.show',
       component: () => import('@/views/DestinationShow.vue'),
-      props: (route) => ({...route.params, id: parseInt(route.params.id) })
+      props: (route) => ({ ...route.params, id: parseInt(route.params.id) })
     },
     {
       path: '/destination/:id/:slug/:experienceSlug',
