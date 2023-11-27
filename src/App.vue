@@ -14,7 +14,16 @@ export default {
   <TheNavegation></TheNavegation>
 
   <div class="container">
-    <RouterView v-slot="{ Component }">
+
+    <!-- Sidebar -->
+    <RouterView class="view left-side" v-slot="{ Component }" name="LeftSidebar">
+      <transition name="fade" mode="out-in">
+        <component :is="Component" :key="$route.path"></component>
+      </transition>
+    </RouterView>
+
+    <!-- Main -->
+    <RouterView v-slot="{ Component }" class="main-view">
       <transition name="fade" mode="out-in">
         <component :is="Component" :key="$route.path"></component>
       </transition>
@@ -33,5 +42,17 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.container {
+  display: flex;
+}
+
+.left-sidebar {
+  width: 20%;
+}
+
+.main-view {
+  width: 100%;
 }
 </style>
