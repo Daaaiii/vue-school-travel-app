@@ -2,7 +2,8 @@
 <template>
   <div class="home">
     <h1>All destinations</h1>
-    <button @click="triggerRouteError">Trigger Router Error</button>
+    <button @click="addDynamicRoute">Add Dinamyc Route</button>
+    <RouterLink to="/dynamic">Visit Dynamic Route</RouterLink>
     <div class="destinations">
       <RouterLink v-for="destination in destinations" :key="destination.id"
         :to="{ name: 'destination.show', params: { id: destination.id, slug: destination.slug } }">
@@ -21,7 +22,6 @@
 
 
 import sourceData from "@/data.json";
-import { isNavigationFailure, NavigationFailureType } from "vue-router";
 
 export default {
   data() {
@@ -29,14 +29,13 @@ export default {
       destinations: sourceData.destinations
     }
   }, methods: {
-    async triggerRouteError() {
-      const navigationFailure = await this.$router.push('/')
-      if (isNavigationFailure(navigationFailure, NavigationFailureType.duplicated)) {
-        console.log(navigationFailure.to)
-        console.log(navigationFailure.from)
-      } else {
-        console.log('All went well')
-      }
+    addDynamicRoute() {
+      this.$router.addRoute({
+        name: 'dynamic',
+        path: '/dynamic',
+        component: () => import('@/views/LoginPage.vue')
+      })
+      this.$router.removeRoute('dynamic')
     }
   }
 }
