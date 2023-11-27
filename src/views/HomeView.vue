@@ -35,7 +35,7 @@ export default {
         console.log(navigationFailure.to)
         console.log(navigationFailure.from)
       } else {
-
+        console.log('All went well')
       }
     }
   }

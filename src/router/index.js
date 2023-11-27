@@ -31,6 +31,12 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+  }, 
+  {
+    // path: '/example/:id(\\d+)', acept only digits
+    // path: '/example/:id(\\d+)+', //id é um numero que pode ter numeros depois /1/2/4
+    path: '/example/:id(\\d+)*', //pode ter ou não o id
+    component: () => import('@/views/LoginPage.vue')
   },
   {
     path: '/destination/:id/:slug',
